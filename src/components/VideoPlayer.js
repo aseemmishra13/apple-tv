@@ -14,7 +14,12 @@ const VideoPlayer = () => {
     let hls;
 
     if (movie?.videoURL) {
-      if (Hls.isSupported()) {
+      if (Hls.isSupported({
+        autoStartLoad: true,
+        xhrSetup: (xhr) => {
+          xhr.withCredentials = false; // Disable CORS for local files
+        }
+      })) {
         hls = new Hls();
         hls.loadSource(movie.videoURL);
         hls.attachMedia(video);

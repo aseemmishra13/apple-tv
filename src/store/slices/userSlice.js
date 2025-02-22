@@ -7,16 +7,26 @@ const initialState = {
 
 const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: {
+    currentUser: null,
+    status: 'idle'
+  },
   reducers: {
     login: (state, action) => {
-      state.currentUser = action.payload;
+      state.currentUser = {
+        id: action.payload.id,
+        email: action.payload.email,
+        username: action.payload.username
+      };
+      state.status = 'succeeded';
     },
     logout: (state) => {
       state.currentUser = null;
+      state.status = 'idle';
     },
     register: (state, action) => {
       state.currentUser = action.payload;
+      state.status = 'registered';
     },
   },
 });
