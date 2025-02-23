@@ -25,7 +25,12 @@ const userSlice = createSlice({
       state.status = 'idle';
     },
     register: (state, action) => {
-      state.currentUser = action.payload;
+      state.currentUser = {
+        id: action.payload.id,
+        email: action.payload.email,
+        username: action.payload.username,
+        password: action.payload.password
+      };
       state.status = 'registered';
     },
   },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { useNavigate } from 'react-router-dom';
-import { register } from '../../store/slices/userSlice';
+
 import axios from 'axios';
 
 
@@ -13,7 +13,7 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,22 +22,22 @@ const Register = () => {
     setError('');
     try {
         const response = await axios.post(
-          `https://6sg271zd-8000.use.devtunnels.ms/auth/register`,
+          `https://6sg271zd-8000.use.devtunnels.ms/api/auth/register`,
           userData
         );
-    
-        const { token, user } = response.data;
-        localStorage.setItem('token', token);
+    console.log(response.data)
+        // const { token } = response.data;
+        // localStorage.setItem('token', token);
         
-        // Dispatch register action with user data
-        dispatch(register({
-          id: user._id,
-          email: user.email,
-          username: user.username,
-          password: user.password
-        }));
+        // // Dispatch register action with user data
+        // dispatch(register({
+          
+        //   email: email,
+        //   username: username,
+        //   password: password
+        // }));
     
-        navigate('/');
+        navigate('/login');
       } catch (error) {
         setError(error.response?.data?.error || 'Registration failed. Please try again.');
       } finally {

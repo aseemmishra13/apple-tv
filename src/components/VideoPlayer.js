@@ -27,7 +27,7 @@ const VideoPlayer = () => {
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
           video.src = movie.videoURL;
         }
-      } else if (extension === 'mp4' || extension === 'webm' || extension === 'ogg') {
+      } else if (extension === 'mp4' || extension === 'webm' || extension === 'ogg' || extension === 'mkv' ) {
         // For formats natively supported by HTML5
         video.src = movie.videoURL;
       } else if (extension === 'avi') {
