@@ -21,7 +21,7 @@ const Login = () => {
     try {
       // 1. Send login request to backend
       const response = await axios.post(
-        `http://localhost:8000/api/auth/login`,
+        `https://6sg271zd-8000.use.devtunnels.ms/api/auth/login`,
         credentials
       );
 

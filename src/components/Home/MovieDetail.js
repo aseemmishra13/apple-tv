@@ -1,18 +1,26 @@
 // components/Home/MovieDetail.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { mockMovies } from '../../mockData';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContent } from '../../store/slices/contentSlice';
 const MovieDetail = () => {
+    const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
-  const movie = mockMovies.find(m => m.id === parseInt(id));
+  const { items, status, error } = useSelector((state) => state.content);
+  console.log(items,status, error)
+  const movie = items.find(m => m.id === (id));
+
+    useEffect(() => {
+      dispatch(fetchContent());
+    }, [dispatch]);
 
   return (
     <div 
       className="movie-detail-container"
       style={{ 
-        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5)), url(${movie.backgroundURL})`
+        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5)), url(${movie.backdropURL})`
       }}
     >
       {/* Navbar with title */}

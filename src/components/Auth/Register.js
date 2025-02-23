@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login, register } from '../../store/slices/userSlice';
+import { register } from '../../store/slices/userSlice';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+
 
 const Register = () => {
   const [userData, setUserData] = useState({ 
@@ -22,7 +22,7 @@ const Register = () => {
     setError('');
     try {
         const response = await axios.post(
-          `${process.env.REACT_APP_API_BASE_URL}/auth/register`,
+          `https://6sg271zd-8000.use.devtunnels.ms/auth/register`,
           userData
         );
     

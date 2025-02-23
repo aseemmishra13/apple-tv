@@ -1,15 +1,24 @@
 // components/VideoPlayer.js
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect,useRef } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
+
 import Hls from 'hls.js';
-import { mockMovies } from '../mockData';
 
 const VideoPlayer = () => {
+   
+    const { id } = useParams();
+   
+    const { items, status, error } = useSelector((state) => state.content);
+    console.log(items,status,error)
+    const movie = items.find(m => m.id === (id));
+
   const videoRef = useRef(null);
-  const { id } = useParams();
-  const movie = mockMovies.find(m => m.id === parseInt(id));
+
 
   useEffect(() => {
+     
     const video = videoRef.current;
     let hls;
 
