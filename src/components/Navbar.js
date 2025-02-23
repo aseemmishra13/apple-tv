@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="logo"> Sasta Apple TV+ </Link>
+      <Link to="/" className="logo"> Apple TV+ </Link>
       <div className="nav-links">
         {currentUser ? (
           <button onClick={handleLogout} className="logout-button">
